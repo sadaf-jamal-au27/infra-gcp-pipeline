@@ -1,4 +1,4 @@
-name: Terraform GCP Shared VPC
+name: Terraform GCP Shared VPC Infra Pipeline
  
 on:
   push:
