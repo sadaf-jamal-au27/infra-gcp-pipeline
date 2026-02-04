@@ -2,7 +2,7 @@ resource "google_container_cluster" "gke" {
   name     = "prod-gke"
   location = var.region
   project  = var.service_project_id
-
+  deletion_protection = false 
   network    = "projects/${var.host_project_id}/global/networks/${var.network_name}"
   subnetwork = "projects/${var.host_project_id}/regions/${var.region}/subnetworks/app-subnet"
 
