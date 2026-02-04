@@ -4,6 +4,6 @@ variable "host_project_id" {}
 variable "service_project_id" {}
 
 variable "network_name" {
-    default = "shared-vpc-network-02"
+    default = "shared-vpc-networks"
 
 }
