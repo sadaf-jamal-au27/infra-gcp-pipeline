@@ -1,15 +1,14 @@
-name: Terraform Apply - GCP Shared VPC
+name: Terraform Destroy - GCP Shared VPC
 
 on:
-  push:
-    branches: [ "master" ]
+  workflow_dispatch:
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  terraform-apply:
+  terraform-destroy:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,18 +29,10 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
-    - name: Terraform Plan
+    - name: Terraform Destroy
       env:
         TF_VAR_host_project_id: ${{ secrets.TF_VAR_host_project_id }}
         TF_VAR_org_id: ${{ secrets.TF_VAR_org_id }}
         TF_VAR_region: ${{ secrets.TF_VAR_region }}
         TF_VAR_service_project_id: ${{ secrets.TF_VAR_service_project_id }}
-      run: terraform plan
-
-    - name: Terraform Apply
-      env:
-        TF_VAR_host_project_id: ${{ secrets.TF_VAR_host_project_id }}
-        TF_VAR_org_id: ${{ secrets.TF_VAR_org_id }}
-        TF_VAR_region: ${{ secrets.TF_VAR_region }}
-        TF_VAR_service_project_id: ${{ secrets.TF_VAR_service_project_id }}
-      run: terraform apply -auto-approve
+      run: terraform destroy -auto-approve
