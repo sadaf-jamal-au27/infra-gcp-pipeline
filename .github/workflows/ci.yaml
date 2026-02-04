@@ -31,8 +31,12 @@ jobs:
       run: terraform init
  
     - name: Terraform Plan
+      env:
+        TF_VAR_host_project_id: ${{ secrets.TF_VAR_host_project_id }}
       run: terraform plan
  
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master'
+      env:
+        TF_VAR_host_project_id: ${{ secrets.TF_VAR_host_project_id }}
       run: terraform apply -auto-approve
